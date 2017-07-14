@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs
+/jquery/1.4.0/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+/jquery-1.4.min.js"></script>
+    <script type="text/javascript">
+    	var num="";//text上显示的数字及符号
+    	var clear=false;//检测text上是否有内容
+    	var total="";//计算总和
+    	$(document).ready(function(){
+    		$(".button").click(function(){
+    			var text=$(this).attr("value");
+    			if(parseInt(text,10)==text||text==="%"||text==="/"||text==="*"||text==="-"||text==="+"||text==="."){
+    				if(clear===false){
+    					num+=text;
+    					$(".textBox").val(num);
+    				}
+    				else{
+    					num=text;
+    					$(".textBox").val(num);
+    					clear=false;
+    				}
+    			}else if(text==="AC"){//清空text
+    				num="";
+    				$(".textBox").val("");
+    			}
+    			else if(text==="CE"){// 删除text最后一个字符
+    				num=num.slice(0,-1);
+    				$(".textBox").val(num);
+    			}
+    			else if(text==="="){
+    				total=eval(num);
+    				$(".textBox").val(total);
+    				clear=true;
+    			}
+    			else if(text==="Ans"){	//上一个计算结果		
+    				$(".textBox").val(total);
+    				num=total;
+    				 clear=false;
+    				}
+    		});
+    	});
+    </script>
+</head>
+<style>
+	*{margin:0;padding: 0;}
+	input{outline: none;}
+	button{outline: none;border: none;}
+	.calculator{
+		width:275px;
+		height:360px;
+		margin:auto;
+		margin-top: 50px;
+		background-color: #26bed0;
+		border-radius: 10px;
+		padding:10px;
+	}
+	.calculator p{font-family: "Microsoft Yahei";font-size: 16px;color:#a5d6dc;text-align: center;margin-bottom: 10px;}
+	.calculator input{width:275px;height:30px;border:none;background-color: #a5d6dc;margin-bottom: 10px;text-align: right;}
+	.calculator .button{width:65px;height: 50px;margin-bottom: 5px;background-color: #fff;color:#26bed0;}
+</style>
+<body>
+	<div class="calculator">
+		<p>Calculator</p>
+		<input type="text" class="textBox" readonly>
+		<div class="buttons">
+			<button class="button" value="AC">AC</button>
+			<button class="button" value="CE">CE</button>
+			<button class="button" value="%">%</button>
+			<button class="button" value="/">/</button>
+			<button class="button" value="7">7</button>
+			<button class="button" value="8">8</button>
+			<button class="button" value="9">9</button>
+			<button class="button" value="*">*</button>
+			<button class="button" value="4">4</button>
+			<button class="button" value="5">5</button>
+			<button class="button" value="6">6</button>
+			<button class="button" value="-">-</button>
+			<button class="button" value="1">1</button>
+			<button class="button" value="2">2</button>
+			<button class="button" value="3">3</button>
+			<button class="button" value="+">+</button>
+			<button class="button" value=".">.</button>
+			<button class="button" value="0">0</button>
+			<button class="button" value="Ans">Ans</button>
+			<button class="button" value="=">=</button>
+		</div>
+		<p>Design by Lin <i class="fa fa-heart"></i></p>
+	</div>
+</body>
+</html>
